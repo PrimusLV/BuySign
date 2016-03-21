@@ -32,8 +32,23 @@ public function onPlayerTouch(PlayerInteractEvent $event){
 			}
 			$sign = $sign->getText();
 			if(TextFormat::clean($sign[0]) === '[for sale: $ 500]'){
-					$tile->setText("{$event->getPlayer()->getName();}");
-					EconomyAPI::getInstance()->reduceMoney($player, 500);
+					if($r = EconomyAPI::getInstance()->reduceMoney($player, 500)){
+						# Cool, everything is fine.
+						$tile->setText("{$event->getPlayer()->getName();}");
+					} else {
+						// $r is an error code
+						switch($r){
+							case EconomyAPI::RET_INVALID:
+								# Invalid $amount
+								break;
+							case EconomyAPI::RET_CANCELLED:
+								# Transaction was cancelled for some reason :/
+								break;
+							case EconomyAPI::RET_NO_ACCOUNT:
+								# Player wasn't recognised by EconomyAPI aka. not registered
+								break;
+						}
+					}
 			}
 		}
 }
