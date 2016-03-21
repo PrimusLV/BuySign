@@ -35,3 +35,5 @@ public function onPlayerTouch(PlayerInteractEvent $event){
 					$tile->setText("{$event->getPlayer()->getName();}");
 					EconomyAPI::getInstance()->reduceMoney($player, 500);
 			}
+		}
+}
