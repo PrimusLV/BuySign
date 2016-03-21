@@ -1,0 +1,5 @@
+name: BuySign
+main: driesboy\Main
+version: 2.0.1
+api: [1.0.0]
+author: Driesboy
