@@ -32,5 +32,7 @@ public function onPlayerTouch(PlayerInteractEvent $event){
 			}
 			$sign = $sign->getText();
 			if(TextFormat::clean($sign[0]) === '[for sale: $ 500]'){
-			$tile->setText("{$name}");
+				if(){
+					$tile->setText("{$event->getPlayer()->getName();}");
+					EconomyAPI::getInstance()->reduceMoney($player, 500);
 			}
